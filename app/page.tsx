@@ -93,14 +93,17 @@ export default async function LandingPage() {
             {t.landing.sub}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/signup">
-              <Button size="lg" className="px-7">{t.landing.createFree}</Button>
+            <Link href="/login?demo=1">
+              <Button size="lg" className="px-7">{t.landing.tryDemo}</Button>
             </Link>
-            <Link href="/login">
-              <Button size="lg" variant="outline" className="px-7">{t.landing.signIn}</Button>
+            <Link href="/signup">
+              <Button size="lg" variant="outline" className="px-7">{t.landing.createFree}</Button>
             </Link>
           </div>
-          <p className="mt-3 text-xs text-slate-400">{t.landing.noCard}</p>
+          <p className="mt-3 text-xs text-slate-400">
+            {t.landing.noCard} <span className="mx-2 text-slate-300">·</span>
+            <span className="font-mono text-slate-500">{t.landing.demoHint}</span>
+          </p>
         </div>
 
         <div className="mx-auto max-w-5xl px-6 pb-20">
@@ -300,9 +303,14 @@ export default async function LandingPage() {
           />
           <h2 className="relative text-3xl font-semibold tracking-tight sm:text-4xl">{t.landing.ctaTitle}</h2>
           <p className="relative mx-auto mt-3 max-w-xl text-white/80">{t.landing.ctaSub}</p>
-          <div className="relative mt-8 flex justify-center">
-            <Link href="/signup">
+          <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link href="/login?demo=1">
               <Button size="lg" className="bg-white px-7 text-slate-900 hover:bg-slate-100">
+                {t.landing.tryDemo}
+              </Button>
+            </Link>
+            <Link href="/signup">
+              <Button size="lg" variant="outline" className="border-white/40 bg-transparent px-7 text-white hover:bg-white/10 hover:text-white">
                 {t.landing.createFree}
               </Button>
             </Link>
