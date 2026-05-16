@@ -1,10 +1,19 @@
+import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
+import { getProfile } from "@/services/profile";
 import { Sidebar } from "@/components/Sidebar";
 import { Topbar } from "@/components/Topbar";
 import { MobileNav } from "@/components/MobileNav";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const { user } = await requireUser();
+  const profile = await getProfile(user.id);
+
+  // First-time user — no business_name set yet → guide them to /onboarding
+  if (!profile?.business_name) {
+    redirect("/onboarding");
+  }
+
   return (
     <div className="flex min-h-screen">
       <Sidebar />

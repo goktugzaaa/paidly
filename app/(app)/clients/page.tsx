@@ -34,6 +34,7 @@ export default async function ClientsPage({
   return (
     <div className="space-y-6">
       <PageHeader
+        eyebrow="People"
         title={t.clients.title}
         description={t.clients.desc}
         actions={

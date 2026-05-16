@@ -69,19 +69,18 @@ export default async function DashboardPage({
 
   return (
     <div className="space-y-6">
-      {/* Greeting */}
-      <div className="relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:flex-row sm:items-end sm:justify-between">
-        <span aria-hidden className="absolute inset-y-0 left-0 w-1.5 bg-brand-gradient" />
+      {/* Greeting — editorial */}
+      <div className="relative flex flex-col gap-6 overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:flex-row sm:items-end sm:justify-between">
+        <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-brand-gradient" />
         <span aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand-gradient-soft blur-2xl" />
         <div className="relative">
-          <p className="mb-1 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-600">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
-            Paidly
+          <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.4em] text-slate-500">
+            — {t.dashboard.title}
           </p>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            {t.dashboard.welcome(displayName)}
+          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-slate-900 sm:text-4xl">
+            Welcome back, <span className="font-serif italic text-slate-600">{displayName}</span>.
           </h1>
-          <p className="mt-1 text-sm text-slate-500">{t.dashboard.welcomeSub}</p>
+          <p className="mt-2 max-w-md text-sm text-slate-500">{t.dashboard.welcomeSub}</p>
         </div>
         <div className="relative flex items-center gap-2">
           <RangeToggle value={range} />

@@ -34,6 +34,7 @@ export default async function InvoicesPage({
   return (
     <div className="space-y-6">
       <PageHeader
+        eyebrow="Billing"
         title={t.invoices.title}
         description={t.invoices.desc}
         actions={
