@@ -85,7 +85,7 @@ export async function renderInvoicePdf(
   const margin = 48;
   const ccy = invoice.currency || "USD";
 
-  const sellerName = opts.profile?.business_name || opts.fallbackName || "Paidly";
+  const sellerName = opts.profile?.business_name || opts.fallbackName || "Folio";
   const sellerEmail = opts.profile?.email || opts.fallbackEmail || "";
   const sellerCountry = getCountry(opts.profile?.country);
   const invoiceTitle = (invoiceWord(opts.profile?.country) || "INVOICE").toUpperCase();

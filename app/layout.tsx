@@ -21,12 +21,12 @@ const serif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "Paidly — Invoices & clients in one place",
-    template: "%s · Paidly",
+    default: "Folio — Invoices & clients in one place",
+    template: "%s · Folio",
   },
   description:
     "A lightweight workspace for freelancers and small agencies. Track clients, send PDF invoices, and watch revenue land — without spreadsheets.",
-  applicationName: "Paidly",
+  applicationName: "Folio",
   keywords: [
     "invoice",
     "freelancer",
@@ -35,17 +35,17 @@ export const metadata: Metadata = {
     "pdf invoice",
     "billing",
   ],
-  authors: [{ name: "Paidly" }],
+  authors: [{ name: "Folio" }],
   openGraph: {
-    title: "Paidly — Invoices & clients in one place",
+    title: "Folio — Invoices & clients in one place",
     description:
       "Track clients, send PDF invoices, get paid. Built for freelancers and small agencies.",
     type: "website",
-    siteName: "Paidly",
+    siteName: "Folio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Paidly — Invoices & clients in one place",
+    title: "Folio — Invoices & clients in one place",
     description:
       "Track clients, send PDF invoices, get paid. Built for freelancers and small agencies.",
   },
