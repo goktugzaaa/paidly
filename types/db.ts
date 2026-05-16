@@ -41,6 +41,8 @@ export interface Invoice {
   po_number: string | null;
   payment_terms: string | null;
   notes: string | null;
+  sent_at: string | null;
+  paid_at: string | null;
   created_at: string;
 }
 

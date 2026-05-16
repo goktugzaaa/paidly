@@ -13,6 +13,7 @@ export function Sidebar() {
     { href: "/dashboard", label: t.nav.dashboard, icon: "M3 12l9-9 9 9M5 10v10h14V10" },
     { href: "/clients", label: t.nav.clients, icon: "M16 14a4 4 0 10-8 0M12 14v6m-7 0h14" },
     { href: "/invoices", label: t.nav.invoices, icon: "M7 4h10l3 4v12H4V8l3-4zM4 8h16M9 14h6" },
+    { href: "/reports", label: t.nav.reports, icon: "M3 3v18h18M7 16V9m4 7V5m4 11v-3m4 3V11" },
     {
       href: "/settings",
       label: t.nav.settings,

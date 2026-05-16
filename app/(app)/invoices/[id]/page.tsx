@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/Badge";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { InvoiceActions } from "./InvoiceActions";
 import { AutoPdf } from "./AutoPdf";
+import { InvoiceTimeline } from "@/components/InvoiceTimeline";
 import { getDict } from "@/lib/i18n/server";
 
 export const dynamic = "force-dynamic";
@@ -77,6 +78,18 @@ export default async function InvoiceDetailPage({
                 <p className="mt-1 whitespace-pre-line text-slate-700">{inv.notes}</p>
               </div>
             )}
+
+            <div className="border-t border-slate-100 pt-4">
+              <div className="mb-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+                {t.timeline.title}
+              </div>
+              <InvoiceTimeline
+                createdAt={inv.created_at}
+                sentAt={inv.sent_at}
+                paidAt={inv.paid_at}
+                status={inv.status}
+              />
+            </div>
           </CardBody>
         </Card>
 

@@ -12,6 +12,8 @@ import { RangeToggle } from "@/components/dashboard/RangeToggle";
 import { QuickActions } from "@/components/dashboard/QuickActions";
 import { ActivityFeed } from "@/components/dashboard/ActivityFeed";
 import { Onboarding } from "@/components/dashboard/Onboarding";
+import { TopClients } from "@/components/dashboard/TopClients";
+import { getTopClients } from "@/services/reports";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { getDict } from "@/lib/i18n/server";
 
@@ -30,10 +32,11 @@ export default async function DashboardPage({
     : "30d") as DashboardRange;
 
   const { user } = await requireUser();
-  const [stats, profile, t] = await Promise.all([
+  const [stats, profile, t, topClients] = await Promise.all([
     getDashboardStats(user.id, range),
     getProfile(user.id),
     getDict(),
+    getTopClients(user.id, 5),
   ]);
   const ccy = profile?.default_currency ?? "USD";
   const displayName =
@@ -141,6 +144,24 @@ export default async function DashboardPage({
           </CardHeader>
           <CardBody>
             <StatusList data={stats.statuses} currency={ccy} />
+          </CardBody>
+        </Card>
+      </div>
+
+      {/* Top clients */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <Card className="lg:col-span-3">
+          <CardHeader className="flex items-center justify-between">
+            <div>
+              <CardTitle>{t.topClients.title}</CardTitle>
+              <p className="mt-0.5 text-xs text-slate-500">{t.topClients.sub}</p>
+            </div>
+            <Link href="/reports" className="text-sm font-medium text-brand-600 hover:text-brand-700">
+              {t.dashboard.viewAll}
+            </Link>
+          </CardHeader>
+          <CardBody className="p-0">
+            <TopClients clients={topClients} />
           </CardBody>
         </Card>
       </div>

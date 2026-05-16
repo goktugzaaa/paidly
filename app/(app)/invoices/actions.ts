@@ -161,6 +161,43 @@ export async function deleteInvoiceAction(id: string) {
   redirect("/invoices?flash=invoiceDeleted");
 }
 
+export async function bulkUpdateInvoiceStatusAction(ids: string[], status: InvoiceStatus) {
+  const { supabase, user } = await requireUser();
+  if (!ids.length) return { ok: true as const };
+  const now = new Date().toISOString();
+  const patch: Record<string, unknown> = { status };
+  if (status === "sent") patch.sent_at = now;
+  if (status === "paid") {
+    patch.paid_at = now;
+    patch.sent_at = now;
+  }
+  const { error } = await supabase
+    .from("invoices")
+    .update(patch)
+    .in("id", ids)
+    .eq("user_id", user.id);
+  if (error) return { ok: false as const, error: error.message };
+  revalidatePath("/invoices");
+  revalidatePath("/dashboard");
+  revalidatePath("/reports");
+  return { ok: true as const };
+}
+
+export async function bulkDeleteInvoicesAction(ids: string[]) {
+  const { supabase, user } = await requireUser();
+  if (!ids.length) return { ok: true as const };
+  const { error } = await supabase
+    .from("invoices")
+    .delete()
+    .in("id", ids)
+    .eq("user_id", user.id);
+  if (error) return { ok: false as const, error: error.message };
+  revalidatePath("/invoices");
+  revalidatePath("/dashboard");
+  revalidatePath("/reports");
+  return { ok: true as const };
+}
+
 export async function setInvoiceStatusAction(id: string, status: InvoiceStatus) {
   const { supabase, user } = await requireUser();
   const now = new Date().toISOString();
