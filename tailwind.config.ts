@@ -28,6 +28,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Instrument Serif", "Georgia", "serif"],
       },
       backgroundImage: {
         "brand-gradient": "linear-gradient(135deg, #1f3df5 0%, #06b6d4 100%)",
@@ -57,12 +58,22 @@ const config: Config = {
           "33%": { transform: "translate(20px, -30px) scale(1.05)" },
           "66%": { transform: "translate(-20px, 20px) scale(0.95)" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "scroll-reveal": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "fade-in-down": "fade-in-down 200ms ease-out",
         "fade-in-up": "fade-in-up 250ms ease-out",
         shimmer: "shimmer 1.6s linear infinite",
         "blob-float": "blob-float 12s ease-in-out infinite",
+        marquee: "marquee 30s linear infinite",
+        "scroll-reveal": "scroll-reveal 600ms ease-out forwards",
       },
     },
   },

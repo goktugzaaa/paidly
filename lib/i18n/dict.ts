@@ -88,6 +88,57 @@ const en = {
     ctaTitle: "Ready when you are.",
     ctaSub: "Sign up free. Get to your first invoice in under 60 seconds.",
     footer: "© 2026 Paidly. Built for the people who actually do the work.",
+
+    // Editorial v2
+    heroEyebrow: "EST. 2026 · INDEPENDENT · OPINIONATED",
+    heroLine1: "Invoices",
+    heroLine2: "without",
+    heroLine3: "ceremony.",
+    heroDeck: "An invoicing tool for people who'd rather be doing the work. Built sharp, sent in seconds, paid faster.",
+    heroPrimary: "Try the live demo",
+    heroSecondary: "Create free account",
+    marqueeText: "Fast invoices · Real PDFs · No spreadsheets · 23 countries · 16 currencies · Multi-tenant · Branded · Open about scope ·",
+
+    manifestoEyebrow: "Manifesto",
+    manifestoLine1: "Most invoicing tools",
+    manifestoLine2: "are built for accountants.",
+    manifestoLine3: "We built ours for the freelancer at 11pm,",
+    manifestoLine4: "trying to invoice the client",
+    manifestoLine5: "before bed.",
+    manifestoBody: "No dashboards you'll never open. No accounting jargon. No twelve-step onboarding. Just a clean form, a beautiful PDF, and the loop closed.",
+
+    statBlockEyebrow: "By the numbers",
+    statCountries: "Countries",
+    statCurrencies: "Currencies",
+    statSeconds: "Seconds to first invoice",
+    statOpenSource: "Open source on GitHub",
+
+    sectionFeaturesEyebrow: "Inside",
+    sectionFeaturesTitle: "Designed like a tool you'd actually want to use.",
+
+    sectionPersonasEyebrow: "Who it's for",
+    sectionPersonasTitle: "Three workflows. One sharp tool.",
+
+    sectionCompareEyebrow: "vs. the alternatives",
+    sectionCompareTitle: "We made some choices. Here's why.",
+
+    sectionTestiEyebrow: "Words from the field",
+    sectionTestiTitle: "What people are saying.",
+
+    sectionFaqEyebrow: "Questions",
+    sectionFaqTitle: "Everything else you'd ask.",
+
+    ctaEyebrow: "Ready?",
+    ctaBigLine1: "Send your first",
+    ctaBigLine2: "invoice in 60 seconds.",
+    ctaBigSub: "Free during beta. No credit card. No 'book a demo' page.",
+    ctaBtnPrimary: "Try the demo",
+    ctaBtnSecondary: "Create account",
+
+    footerTagline: "Invoices, without ceremony.",
+    footerMade: "Crafted in Istanbul",
+    footerLinks: "Sitemap",
+    footerLegal: "Legal",
     countriesTitle: "Built for 23 countries — for real",
     countriesSub: "Pick your country and Paidly sets your currency, tax label, invoice wording and date format — automatically. Only countries where our PDF is accepted as a real invoice are listed.",
     countriesNote: "We deliberately exclude markets that require government e-invoicing systems (Italy SDI, Mexico CFDI, Brazil NF-e, India GST e-invoicing, Japan Qualified Invoice, UAE/Saudi ZATCA, Türkiye e-Fatura over threshold). Use a local provider for those.",
@@ -434,6 +485,57 @@ const tr: typeof en = {
     ctaTitle: "Hazır olduğunda buradayız.",
     ctaSub: "Ücretsiz kaydol. 60 saniyeden kısa sürede ilk faturanı kes.",
     footer: "© 2026 Paidly. İşi gerçekten yapanlar için.",
+
+    // Editorial v2
+    heroEyebrow: "2026 · BAĞIMSIZ · KENDİNDEN EMİN",
+    heroLine1: "Fatura,",
+    heroLine2: "tören",
+    heroLine3: "olmadan.",
+    heroDeck: "İşi yapmak isteyenler için fatura aracı. Keskin tasarlandı, saniyede gönderildi, daha hızlı ödendi.",
+    heroPrimary: "Canlı demoyu dene",
+    heroSecondary: "Ücretsiz hesap aç",
+    marqueeText: "Hızlı fatura · Gerçek PDF · Excel yok · 23 ülke · 16 para birimi · Çok kiracılı · Markalı · Kapsam konusunda dürüst ·",
+
+    manifestoEyebrow: "Manifesto",
+    manifestoLine1: "Çoğu fatura aracı",
+    manifestoLine2: "muhasebeciler için yapılmış.",
+    manifestoLine3: "Biz gece 11'de fatura kesmeye çalışan",
+    manifestoLine4: "freelancer için yaptık —",
+    manifestoLine5: "yatmadan önce.",
+    manifestoBody: "Açmayacağın dashboard'lar yok. Muhasebe jargonu yok. On iki adımlı onboarding yok. Sadece temiz bir form, güzel bir PDF ve kapanan bir döngü.",
+
+    statBlockEyebrow: "Rakamlarla",
+    statCountries: "Ülke",
+    statCurrencies: "Para birimi",
+    statSeconds: "Saniyede ilk fatura",
+    statOpenSource: "GitHub'da açık kaynak",
+
+    sectionFeaturesEyebrow: "İçeride",
+    sectionFeaturesTitle: "Gerçekten kullanmak isteyeceğin gibi tasarlandı.",
+
+    sectionPersonasEyebrow: "Kimler için",
+    sectionPersonasTitle: "Üç iş akışı. Tek keskin araç.",
+
+    sectionCompareEyebrow: "alternatifler vs.",
+    sectionCompareTitle: "Tercihler yaptık. Sebebi:",
+
+    sectionTestiEyebrow: "Sahadan sözler",
+    sectionTestiTitle: "Kullananlar ne diyor.",
+
+    sectionFaqEyebrow: "Sorular",
+    sectionFaqTitle: "Aklına gelebilecek diğer her şey.",
+
+    ctaEyebrow: "Hazır mısın?",
+    ctaBigLine1: "İlk faturanı 60 saniyede",
+    ctaBigLine2: "kes.",
+    ctaBigSub: "Beta'da ücretsiz. Kart yok. 'Demo rezerve et' sayfası yok.",
+    ctaBtnPrimary: "Demoyu dene",
+    ctaBtnSecondary: "Hesap oluştur",
+
+    footerTagline: "Fatura, tören olmadan.",
+    footerMade: "İstanbul'da yapıldı",
+    footerLinks: "Site haritası",
+    footerLegal: "Hukuki",
     countriesTitle: "23 ülkede gerçekten çalışır",
     countriesSub: "Ülkeni seç — Paidly para birimini, vergi etiketini, fatura kelimesini ve tarih formatını otomatik ayarlar. Yalnızca PDF'imizin gerçek fatura olarak kabul edildiği ülkeleri listeliyoruz.",
     countriesNote: "Devlet e-fatura sistemi zorunlu olan pazarları (İtalya SDI, Meksika CFDI, Brezilya NF-e, Hindistan GST e-invoicing, Japonya Qualified Invoice, BAE/Suudi ZATCA, eşik üstü Türkiye e-Fatura) bilinçli olarak listemizden çıkardık. O pazarlar için yerel bir sağlayıcı kullan.",
