@@ -342,6 +342,27 @@ export default async function LandingPage() {
         </div>
       </section>
 
+      {/* WHAT WE WON'T DO — opinionated */}
+      <section className="border-y border-slate-900/10 bg-white py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <Reveal>
+            <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.4em] text-slate-500">
+              — {t.landing.neverEyebrow}
+            </p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.025em] sm:text-6xl">
+              <span className="font-serif italic text-slate-500">{t.landing.neverLine}</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-600">
+              {t.landing.neverSub}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* BUILT IN PUBLIC — founder honesty */}
       <section className="bg-[#f8f7f4] py-32">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 lg:grid-cols-12">
@@ -436,6 +457,8 @@ export default async function LandingPage() {
               <li><a href="#features" className="hover:text-slate-900">{t.landing.navFeatures}</a></li>
               <li><a href="#countries" className="hover:text-slate-900">{t.landing.navCountries}</a></li>
               <li><a href="#faq" className="hover:text-slate-900">{t.landing.navFaq}</a></li>
+              <li><Link href="/about" className="hover:text-slate-900">About</Link></li>
+              <li><Link href="/changelog" className="hover:text-slate-900">Changelog</Link></li>
               <li><Link href="/login" className="hover:text-slate-900">{t.landing.signIn}</Link></li>
             </ul>
           </div>

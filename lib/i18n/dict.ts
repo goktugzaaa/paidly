@@ -157,6 +157,10 @@ const en = {
     publicBody1: "I'm Göktuğ. I freelance. The thing that finally made me build this was waiting 47 days for a $4k invoice while my old tool kept asking me to upgrade to see the 'overdue' filter.",
     publicBody2: "Paidly is the tool I wanted that day. No dashboards I never open. No 12-step onboarding. Open, type, send. If you have an opinion — good or bad — DM me.",
     publicSig: "— Göktuğ",
+
+    neverEyebrow: "What we won't do",
+    neverLine: "We will never become an accounting platform.",
+    neverSub: "If you need books closed, taxes filed, expenses categorized for an audit — Paidly is the wrong tool. Use QuickBooks or hire an accountant. We invoice. That's the whole job.",
     countriesTitle: "Built for 23 countries — for real",
     countriesSub: "Pick your country and Paidly sets your currency, tax label, invoice wording and date format — automatically. Only countries where our PDF is accepted as a real invoice are listed.",
     countriesNote: "We deliberately exclude markets that require government e-invoicing systems (Italy SDI, Mexico CFDI, Brazil NF-e, India GST e-invoicing, Japan Qualified Invoice, UAE/Saudi ZATCA, Türkiye e-Fatura over threshold). Use a local provider for those.",
@@ -664,6 +668,10 @@ const tr: typeof en = {
     publicBody1: "Ben Göktuğ. Freelance yapıyorum. Bu aracı yapmamın asıl sebebi: 4.000 dolarlık bir faturayı 47 gün beklerken eski fatura aracım bana 'overdue filter' için planımı yükseltmemi söylüyordu.",
     publicBody2: "Paidly o gün isteyeceğim araç. Açmayacağım panellerle dolu değil. 12 adımlı kurulum yok. Aç, yaz, gönder. Fikrin varsa — iyi ya da kötü — DM at.",
     publicSig: "— Göktuğ",
+
+    neverEyebrow: "Yapmayacağımız şey",
+    neverLine: "Asla muhasebe platformu olmayacağız.",
+    neverSub: "Defter kapatma, vergi beyanı, denetim için kategorize edilmiş gider — Paidly yanlış araç. QuickBooks kullan ya da muhasebeci tut. Biz sadece fatura kesiyoruz. İşin tamamı bu.",
     countriesTitle: "23 ülkede gerçekten çalışır",
     countriesSub: "Ülkeni seç — Paidly para birimini, vergi etiketini, fatura kelimesini ve tarih formatını otomatik ayarlar. Yalnızca PDF'imizin gerçek fatura olarak kabul edildiği ülkeleri listeliyoruz.",
     countriesNote: "Devlet e-fatura sistemi zorunlu olan pazarları (İtalya SDI, Meksika CFDI, Brezilya NF-e, Hindistan GST e-invoicing, Japonya Qualified Invoice, BAE/Suudi ZATCA, eşik üstü Türkiye e-Fatura) bilinçli olarak listemizden çıkardık. O pazarlar için yerel bir sağlayıcı kullan.",
