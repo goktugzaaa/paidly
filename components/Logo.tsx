@@ -12,7 +12,7 @@ const textSize: Record<Size, string> = {
 };
 
 /**
- * Folio mark — folded page corner motif (page / folio leaf).
+ * Vellum mark — folded page corner motif (page / folio leaf).
  * Pure inline SVG; no external image asset.
  */
 export function LogoMark({ size = "md", className }: { size?: Size; className?: string }) {
@@ -66,7 +66,7 @@ export function Brand({
       <LogoMark size={size} />
       {showText && (
         <span className={cn("font-serif italic tracking-tight text-slate-900", textSize[size])}>
-          Folio
+          Vellum
         </span>
       )}
     </span>

@@ -21,12 +21,12 @@ const serif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "Folio — Invoices & clients in one place",
-    template: "%s · Folio",
+    default: "Vellum — Invoices & clients in one place",
+    template: "%s · Vellum",
   },
   description:
     "A lightweight workspace for freelancers and small agencies. Track clients, send PDF invoices, and watch revenue land — without spreadsheets.",
-  applicationName: "Folio",
+  applicationName: "Vellum",
   keywords: [
     "invoice",
     "freelancer",
@@ -35,17 +35,17 @@ export const metadata: Metadata = {
     "pdf invoice",
     "billing",
   ],
-  authors: [{ name: "Folio" }],
+  authors: [{ name: "Vellum" }],
   openGraph: {
-    title: "Folio — Invoices & clients in one place",
+    title: "Vellum — Invoices & clients in one place",
     description:
       "Track clients, send PDF invoices, get paid. Built for freelancers and small agencies.",
     type: "website",
-    siteName: "Folio",
+    siteName: "Vellum",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Folio — Invoices & clients in one place",
+    title: "Vellum — Invoices & clients in one place",
     description:
       "Track clients, send PDF invoices, get paid. Built for freelancers and small agencies.",
   },

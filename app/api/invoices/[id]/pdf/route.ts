@@ -27,7 +27,7 @@ export async function GET(
       profile,
       logoBytes,
       clientFull,
-      fallbackName: user.user_metadata?.full_name || user.email || "Folio",
+      fallbackName: user.user_metadata?.full_name || user.email || "Vellum",
       fallbackEmail: user.email ?? "",
     });
 
