@@ -2,6 +2,8 @@ import Link from "next/link";
 import { requireUser } from "@/lib/auth";
 import { getDashboardStats, type DashboardRange } from "@/services/dashboard";
 import { getProfile } from "@/services/profile";
+import { getTopClients } from "@/services/reports";
+import { getActionItems, getRevenueDelta } from "@/services/actions";
 import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -9,17 +11,17 @@ import { Table, THead, TR, TH, TD } from "@/components/ui/Table";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { RevenueBar, StatusList } from "@/components/dashboard/Charts";
 import { RangeToggle } from "@/components/dashboard/RangeToggle";
-import { QuickActions } from "@/components/dashboard/QuickActions";
 import { ActivityFeed } from "@/components/dashboard/ActivityFeed";
 import { Onboarding } from "@/components/dashboard/Onboarding";
 import { TopClients } from "@/components/dashboard/TopClients";
-import { getTopClients } from "@/services/reports";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { ActionItems } from "@/components/dashboard/ActionItems";
+import { formatCurrency, formatDate, cn } from "@/lib/utils";
 import { getDict } from "@/lib/i18n/server";
 
 export const dynamic = "force-dynamic";
 
 const VALID_RANGES: DashboardRange[] = ["7d", "30d", "90d", "12m"];
+const RANGE_DAYS: Record<DashboardRange, number> = { "7d": 7, "30d": 30, "90d": 90, "12m": 365, all: 365 };
 
 export default async function DashboardPage({
   searchParams,
@@ -32,11 +34,13 @@ export default async function DashboardPage({
     : "30d") as DashboardRange;
 
   const { user } = await requireUser();
-  const [stats, profile, t, topClients] = await Promise.all([
+  const [stats, profile, t, topClients, actionItems, delta] = await Promise.all([
     getDashboardStats(user.id, range),
     getProfile(user.id),
     getDict(),
     getTopClients(user.id, 5),
+    getActionItems(user.id),
+    getRevenueDelta(user.id, RANGE_DAYS[range]),
   ]);
   const ccy = profile?.default_currency ?? "USD";
   const displayName =
@@ -52,42 +56,21 @@ export default async function DashboardPage({
     all: "",
   }[range];
 
-  const cards = [
-    {
-      label: t.dashboard.totalRevenue,
-      value: formatCurrency(stats.rangeRevenue, ccy),
-      hint: t.dashboard.totalRevenueHint(rangeLabel),
-    },
-    {
-      label: t.dashboard.outstanding,
-      value: formatCurrency(stats.unpaidAmount, ccy),
-      hint: t.dashboard.outstandingHint(stats.unpaidCount),
-    },
-    {
-      label: t.dashboard.activeClients,
-      value: stats.activeClients.toString(),
-      hint: t.dashboard.activeClientsHint,
-    },
-  ];
-
   return (
-    <div className="space-y-6">
-      {/* Greeting — editorial */}
-      <div className="relative flex flex-col gap-6 overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:flex-row sm:items-end sm:justify-between">
-        <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-brand-gradient" />
-        <span aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand-gradient-soft blur-2xl" />
-        <div className="relative">
-          <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.4em] text-slate-500">
+    <div className="space-y-8">
+      {/* Greeting — minimal */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.4em] text-slate-500">
             — {t.dashboard.title}
           </p>
           <h1 className="text-3xl font-semibold tracking-[-0.025em] text-slate-900 sm:text-4xl">
             {t.dashboard.welcomePrefix}{" "}
-            <span className="font-serif italic text-slate-600">{displayName}</span>
+            <span className="font-serif italic text-slate-500">{displayName}</span>
             {t.dashboard.welcomeSuffix}
           </h1>
-          <p className="mt-2 max-w-md text-sm text-slate-500">{t.dashboard.welcomeSub}</p>
         </div>
-        <div className="relative flex items-center gap-2">
+        <div className="flex items-center gap-2">
           <RangeToggle value={range} />
           <Link href="/invoices/new">
             <Button>{t.dashboard.newInvoice}</Button>
@@ -104,25 +87,48 @@ export default async function DashboardPage({
         />
       )}
 
-      {/* Stat cards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {cards.map((c) => (
-          <Card key={c.label}>
-            <CardBody>
-              <div className="text-sm font-medium text-slate-500">{c.label}</div>
-              <div className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">{c.value}</div>
-              <div className="mt-1 text-xs text-slate-500">{c.hint}</div>
-            </CardBody>
-          </Card>
-        ))}
+      {/* KPI strip — editorial, tonal */}
+      <div className="grid grid-cols-1 divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <KpiCell
+          label={t.dashboard.totalRevenue}
+          value={formatCurrency(stats.rangeRevenue, ccy)}
+          hint={t.dashboard.totalRevenueHint(rangeLabel)}
+          delta={delta}
+          deltaText={delta !== null ? t.actions.delta(delta) : t.actions.noChange}
+        />
+        <KpiCell
+          label={t.dashboard.outstanding}
+          value={formatCurrency(stats.unpaidAmount, ccy)}
+          hint={t.dashboard.outstandingHint(stats.unpaidCount)}
+        />
+        <KpiCell
+          label={t.dashboard.activeClients}
+          value={stats.activeClients.toString()}
+          hint={t.dashboard.activeClientsHint}
+        />
       </div>
 
-      {/* Quick actions */}
-      <div>
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
-          {t.dashboard.quickActions}
-        </h2>
-        <QuickActions />
+      {/* Needs attention + Activity (priority row) */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <div>
+              <CardTitle>{t.actions.title}</CardTitle>
+              <p className="mt-0.5 text-xs text-slate-500">{t.actions.sub}</p>
+            </div>
+          </CardHeader>
+          <CardBody className="p-0">
+            <ActionItems items={actionItems} />
+          </CardBody>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.dashboard.activity}</CardTitle>
+          </CardHeader>
+          <CardBody className="p-0">
+            <ActivityFeed items={stats.activity} />
+          </CardBody>
+        </Card>
       </div>
 
       {/* Charts */}
@@ -148,15 +154,15 @@ export default async function DashboardPage({
         </Card>
       </div>
 
-      {/* Top clients */}
+      {/* Top clients + Recent invoices */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-3">
+        <Card>
           <CardHeader className="flex items-center justify-between">
             <div>
               <CardTitle>{t.topClients.title}</CardTitle>
               <p className="mt-0.5 text-xs text-slate-500">{t.topClients.sub}</p>
             </div>
-            <Link href="/reports" className="text-sm font-medium text-brand-600 hover:text-brand-700">
+            <Link href="/reports" className="font-mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-slate-900">
               {t.dashboard.viewAll}
             </Link>
           </CardHeader>
@@ -164,14 +170,11 @@ export default async function DashboardPage({
             <TopClients clients={topClients} />
           </CardBody>
         </Card>
-      </div>
 
-      {/* Recent invoices + activity feed */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader className="flex items-center justify-between">
             <CardTitle>{t.dashboard.recent}</CardTitle>
-            <Link href="/invoices" className="text-sm font-medium text-brand-600 hover:text-brand-700">
+            <Link href="/invoices" className="font-mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-slate-900">
               {t.dashboard.viewAll}
             </Link>
           </CardHeader>
@@ -195,7 +198,6 @@ export default async function DashboardPage({
                   <tr>
                     <TH>{t.invoices.title}</TH>
                     <TH>{t.nav.clients}</TH>
-                    <TH>{t.common.issued}</TH>
                     <TH>{t.common.status}</TH>
                     <TH className="text-right">{t.common.amount}</TH>
                   </tr>
@@ -209,7 +211,6 @@ export default async function DashboardPage({
                         </Link>
                       </TD>
                       <TD>{inv.client?.name ?? "—"}</TD>
-                      <TD>{formatDate(inv.issue_date)}</TD>
                       <TD>
                         <Badge value={inv.status} label={t.status[inv.status]} />
                       </TD>
@@ -223,16 +224,44 @@ export default async function DashboardPage({
             )}
           </CardBody>
         </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>{t.dashboard.activity}</CardTitle>
-          </CardHeader>
-          <CardBody className="p-0">
-            <ActivityFeed items={stats.activity} />
-          </CardBody>
-        </Card>
       </div>
+    </div>
+  );
+}
+
+function KpiCell({
+  label,
+  value,
+  hint,
+  delta,
+  deltaText,
+}: {
+  label: string;
+  value: string;
+  hint: string;
+  delta?: number | null;
+  deltaText?: string;
+}) {
+  const positive = delta !== undefined && delta !== null && delta >= 0;
+  return (
+    <div className="p-6">
+      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-500">{label}</div>
+      <div className="mt-3 flex items-baseline gap-3">
+        <span className="text-3xl font-semibold tracking-[-0.025em] text-slate-900 sm:text-4xl">
+          {value}
+        </span>
+        {delta !== undefined && delta !== null && (
+          <span
+            className={cn(
+              "rounded-full px-2 py-0.5 text-xs font-medium",
+              positive ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"
+            )}
+          >
+            {positive ? "▲" : "▼"} {Math.abs(delta).toFixed(0)}%
+          </span>
+        )}
+      </div>
+      <p className="mt-2 text-xs text-slate-500">{deltaText ?? hint}</p>
     </div>
   );
 }

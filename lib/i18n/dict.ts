@@ -494,6 +494,21 @@ const en = {
     empty: "No paid invoices yet.",
     invoiceCount: (n: number) => `${n} invoice${n === 1 ? "" : "s"}`,
   },
+  actions: {
+    title: "Needs your attention",
+    sub: "Drafts, overdue, payments — what to handle next.",
+    empty: "Inbox zero. Nothing on fire.",
+    sendDraft: (num: string, days: number) =>
+      `Send ${num} — sitting in draft ${days} day${days === 1 ? "" : "s"}`,
+    chaseOverdue: (num: string, client: string, days: number) =>
+      `Chase ${num} (${client}) — ${days} day${days === 1 ? "" : "s"} overdue`,
+    dueSoon: (num: string, client: string, days: number) =>
+      `${num} (${client}) due in ${days} day${days === 1 ? "" : "s"}`,
+    justPaid: (num: string, client: string) => `Paid: ${num} from ${client}`,
+    open: "Open",
+    delta: (pct: number) => `${pct >= 0 ? "+" : ""}${pct.toFixed(0)}% vs prior`,
+    noChange: "no change vs prior",
+  },
   timeline: {
     title: "Timeline",
     created: "Invoice created",
@@ -1008,6 +1023,20 @@ const tr: typeof en = {
     sub: "Ödenen gelire göre",
     empty: "Henüz ödenmiş fatura yok.",
     invoiceCount: (n: number) => `${n} fatura`,
+  },
+  actions: {
+    title: "Dikkat etmen gerekenler",
+    sub: "Taslaklar, gecikenler, ödemeler — sıradaki iş.",
+    empty: "Sıfır mesaj. Yangın yok.",
+    sendDraft: (num: string, days: number) => `${num}'i gönder — ${days} gündür taslakta`,
+    chaseOverdue: (num: string, client: string, days: number) =>
+      `${num} (${client}) — ${days} gün gecikti, hatırlat`,
+    dueSoon: (num: string, client: string, days: number) =>
+      `${num} (${client}) — ${days} gün içinde vade`,
+    justPaid: (num: string, client: string) => `Ödendi: ${num} ${client}'den`,
+    open: "Aç",
+    delta: (pct: number) => `${pct >= 0 ? "+" : ""}${pct.toFixed(0)}% önceki döneme göre`,
+    noChange: "değişim yok",
   },
   timeline: {
     title: "Zaman tüneli",
