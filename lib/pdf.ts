@@ -1,6 +1,25 @@
 import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFImage, type PDFPage } from "pdf-lib";
+import fontkit from "@pdf-lib/fontkit";
+import fs from "fs/promises";
+import path from "path";
 import type { InvoiceWithItems, Profile, Client } from "@/types/db";
 import { invoiceWord, getCountry, getDateLocale } from "@/lib/countries";
+
+// Cache TTF bytes across invocations (warm Lambda)
+let regularBytesCache: Uint8Array | null = null;
+let boldBytesCache: Uint8Array | null = null;
+
+async function loadFontBytes(filename: string): Promise<Uint8Array> {
+  const fontPath = path.join(process.cwd(), "public", "fonts", filename);
+  const buf = await fs.readFile(fontPath);
+  return new Uint8Array(buf);
+}
+
+async function getInterFonts() {
+  if (!regularBytesCache) regularBytesCache = await loadFontBytes("Inter-Regular.ttf");
+  if (!boldBytesCache) boldBytesCache = await loadFontBytes("Inter-Bold.ttf");
+  return { regular: regularBytesCache, bold: boldBytesCache };
+}
 
 const COLOR = {
   text: rgb(0.12, 0.16, 0.23),
@@ -41,9 +60,22 @@ export async function renderInvoicePdf(
   opts: PdfOpts = {}
 ): Promise<Uint8Array> {
   const pdf = await PDFDocument.create();
+  pdf.registerFontkit(fontkit);
+
+  let font: PDFFont;
+  let bold: PDFFont;
+  try {
+    const { regular, bold: boldBytes } = await getInterFonts();
+    // subset: true keeps the PDF small by only embedding glyphs we actually use
+    font = await pdf.embedFont(regular, { subset: true });
+    bold = await pdf.embedFont(boldBytes, { subset: true });
+  } catch {
+    // Fallback to standard Helvetica if font files missing
+    font = await pdf.embedFont(StandardFonts.Helvetica);
+    bold = await pdf.embedFont(StandardFonts.HelveticaBold);
+  }
+
   const page = pdf.addPage([595.28, 841.89]); // A4
-  const font = await pdf.embedFont(StandardFonts.Helvetica);
-  const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
 
   const { width, height } = page.getSize();
   const margin = 48;
