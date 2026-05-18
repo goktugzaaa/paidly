@@ -49,19 +49,20 @@ export function LanguageSwitcher() {
         aria-expanded={open}
         className={cn(
           "inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:bg-slate-50",
+          "dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800",
           pending && "opacity-60"
         )}
       >
         <span className="text-base leading-none">{FLAGS[locale]}</span>
         <span className="uppercase">{locale}</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3 text-slate-400">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3 text-slate-400 dark:text-slate-500">
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {open && (
         <ul
           role="listbox"
-          className="absolute right-0 z-50 mt-1 w-44 overflow-hidden rounded-lg border border-slate-200 bg-white py-1 text-sm shadow-lg animate-fade-in-down"
+          className="absolute right-0 z-50 mt-1 w-44 overflow-hidden rounded-lg border border-slate-200 bg-white py-1 text-sm shadow-lg animate-fade-in-down dark:border-slate-700 dark:bg-slate-900"
         >
           {LOCALES.map((l) => (
             <li key={l}>
@@ -70,7 +71,9 @@ export function LanguageSwitcher() {
                 onClick={() => setLocale(l)}
                 className={cn(
                   "flex w-full items-center gap-2 px-3 py-1.5 text-left",
-                  l === locale ? "bg-brand-50 text-brand-700" : "text-slate-700 hover:bg-slate-50"
+                  l === locale
+                    ? "bg-brand-50 text-brand-700 dark:bg-brand-950/40 dark:text-brand-300"
+                    : "text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800"
                 )}
               >
                 <span className="text-base leading-none">{FLAGS[l]}</span>

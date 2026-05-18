@@ -21,18 +21,18 @@ export function ActionItems({ items }: { items: ActionItem[] }) {
   if (items.length === 0) {
     return (
       <div className="flex items-center gap-3 px-5 py-4 text-sm">
-        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-3.5 w-3.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </span>
-        <span className="text-slate-600">{t.actions.empty}</span>
+        <span className="text-slate-600 dark:text-slate-400">{t.actions.empty}</span>
       </div>
     );
   }
 
   return (
-    <ul className="divide-y divide-slate-100">
+    <ul className="divide-y divide-slate-100 dark:divide-slate-800">
       {items.map((it) => {
         const meta = KIND_META[it.kind];
         let text = "";
@@ -44,14 +44,14 @@ export function ActionItems({ items }: { items: ActionItem[] }) {
           <li key={`${it.kind}-${it.invoiceId}`}>
             <Link
               href={`/invoices/${it.invoiceId}`}
-              className="group flex items-center gap-3 px-5 py-2 transition-colors hover:bg-slate-50"
+              className="group flex items-center gap-3 px-5 py-2 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50"
             >
               <span className={`inline-flex h-1.5 w-1.5 shrink-0 rounded-full ${meta.dot}`} />
-              <span className="min-w-0 flex-1 truncate text-sm text-slate-800">{text}</span>
-              <span className="shrink-0 font-mono text-xs tabular-nums text-slate-500">
+              <span className="min-w-0 flex-1 truncate text-sm text-slate-800 dark:text-slate-200">{text}</span>
+              <span className="shrink-0 font-mono text-xs tabular-nums text-slate-500 dark:text-slate-400">
                 {formatCurrency(it.amount, it.currency)}
               </span>
-              <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-slate-300 transition-colors group-hover:text-brand-600">
+              <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-slate-300 transition-colors group-hover:text-brand-600 dark:text-slate-600 dark:group-hover:text-brand-400">
                 →
               </span>
             </Link>

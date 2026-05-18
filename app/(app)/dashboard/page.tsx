@@ -61,12 +61,12 @@ export default async function DashboardPage({
       {/* Greeting — minimal */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.4em] text-slate-500">
+          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">
             — {t.dashboard.title}
           </p>
-          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-slate-900 sm:text-4xl">
+          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-slate-900 sm:text-4xl dark:text-slate-100">
             {t.dashboard.welcomePrefix}{" "}
-            <span className="font-serif italic text-slate-500">{displayName}</span>
+            <span className="font-serif italic text-slate-500 dark:text-slate-400">{displayName}</span>
             {t.dashboard.welcomeSuffix}
           </h1>
         </div>
@@ -88,7 +88,7 @@ export default async function DashboardPage({
       )}
 
       {/* KPI strip — editorial, tonal */}
-      <div className="grid grid-cols-1 divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      <div className="grid grid-cols-1 divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white sm:grid-cols-3 sm:divide-x sm:divide-y-0 dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900">
         <KpiCell
           label={t.dashboard.totalRevenue}
           value={formatCurrency(stats.rangeRevenue, ccy)}
@@ -245,23 +245,25 @@ function KpiCell({
   const positive = delta !== undefined && delta !== null && delta >= 0;
   return (
     <div className="p-6">
-      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-500">{label}</div>
+      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">{label}</div>
       <div className="mt-3 flex items-baseline gap-3">
-        <span className="text-3xl font-semibold tracking-[-0.025em] text-slate-900 sm:text-4xl">
+        <span className="text-3xl font-semibold tracking-[-0.025em] text-slate-900 sm:text-4xl dark:text-slate-100">
           {value}
         </span>
         {delta !== undefined && delta !== null && (
           <span
             className={cn(
               "rounded-full px-2 py-0.5 text-xs font-medium",
-              positive ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"
+              positive
+                ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300"
+                : "bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300"
             )}
           >
             {positive ? "▲" : "▼"} {Math.abs(delta).toFixed(0)}%
           </span>
         )}
       </div>
-      <p className="mt-2 text-xs text-slate-500">{deltaText ?? hint}</p>
+      <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{deltaText ?? hint}</p>
     </div>
   );
 }

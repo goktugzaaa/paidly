@@ -63,11 +63,11 @@ export function InvoiceTable({ invoices }: { invoices: InvoiceWithClient[] }) {
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
       {/* Bulk action bar */}
       {selected.size > 0 && (
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-brand-50/60 px-4 py-2.5 text-sm">
-          <span className="font-medium text-brand-700">{t.bulk.selected(selected.size)}</span>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-brand-50/60 px-4 py-2.5 text-sm dark:border-slate-800 dark:bg-brand-950/30">
+          <span className="font-medium text-brand-700 dark:text-brand-300">{t.bulk.selected(selected.size)}</span>
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
@@ -115,7 +115,7 @@ export function InvoiceTable({ invoices }: { invoices: InvoiceWithClient[] }) {
                   if (el) el.indeterminate = someSelected;
                 }}
                 onChange={toggleAll}
-                className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500 dark:border-slate-600 dark:bg-slate-900"
                 aria-label="Select all"
               />
             </TH>
@@ -134,18 +134,18 @@ export function InvoiceTable({ invoices }: { invoices: InvoiceWithClient[] }) {
             const displayStatus = (overdue && inv.status === "sent" ? "overdue" : inv.status) as InvoiceStatus;
             const isChecked = selected.has(inv.id);
             return (
-              <TR key={inv.id} className={cn(isChecked && "bg-brand-50/40")}>
+              <TR key={inv.id} className={cn(isChecked && "bg-brand-50/40 dark:bg-brand-950/30")}>
                 <TD>
                   <input
                     type="checkbox"
                     checked={isChecked}
                     onChange={() => toggleOne(inv.id)}
-                    className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                    className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500 dark:border-slate-600 dark:bg-slate-900"
                     aria-label={`Select ${inv.invoice_number}`}
                   />
                 </TD>
-                <TD className="font-medium text-slate-900">
-                  <Link href={`/invoices/${inv.id}`} className="hover:text-brand-700">
+                <TD className="font-medium text-slate-900 dark:text-slate-100">
+                  <Link href={`/invoices/${inv.id}`} className="hover:text-brand-700 dark:hover:text-brand-400">
                     {inv.invoice_number}
                   </Link>
                 </TD>

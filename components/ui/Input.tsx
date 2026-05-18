@@ -1,6 +1,15 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+const FIELD_BASE =
+  "block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 " +
+  "placeholder:text-slate-400 shadow-sm " +
+  "focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 " +
+  "dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 " +
+  "dark:focus:border-brand-400 dark:focus:ring-brand-900/40";
+
+const LABEL_BASE = "block text-sm font-medium text-slate-700 dark:text-slate-300";
+
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
@@ -13,7 +22,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="space-y-1.5">
         {label && (
-          <label htmlFor={inputId} className="block text-sm font-medium text-slate-700">
+          <label htmlFor={inputId} className={LABEL_BASE}>
             {label}
           </label>
         )}
@@ -21,18 +30,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            "block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm",
-            "placeholder:text-slate-400 shadow-sm",
-            "focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200",
-            error && "border-rose-400 focus:border-rose-500 focus:ring-rose-200",
+            FIELD_BASE,
+            error && "border-rose-400 focus:border-rose-500 focus:ring-rose-200 dark:border-rose-700",
             className
           )}
           {...props}
         />
         {error ? (
-          <p className="text-xs text-rose-600">{error}</p>
+          <p className="text-xs text-rose-600 dark:text-rose-400">{error}</p>
         ) : hint ? (
-          <p className="text-xs text-slate-500">{hint}</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">{hint}</p>
         ) : null}
       </div>
     );
@@ -48,7 +55,7 @@ export const Textarea = React.forwardRef<
   return (
     <div className="space-y-1.5">
       {label && (
-        <label htmlFor={inputId} className="block text-sm font-medium text-slate-700">
+        <label htmlFor={inputId} className={LABEL_BASE}>
           {label}
         </label>
       )}
@@ -56,15 +63,13 @@ export const Textarea = React.forwardRef<
         ref={ref}
         id={inputId}
         className={cn(
-          "block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm",
-          "placeholder:text-slate-400 shadow-sm",
-          "focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200",
-          error && "border-rose-400 focus:border-rose-500 focus:ring-rose-200",
+          FIELD_BASE,
+          error && "border-rose-400 focus:border-rose-500 focus:ring-rose-200 dark:border-rose-700",
           className
         )}
         {...props}
       />
-      {error && <p className="text-xs text-rose-600">{error}</p>}
+      {error && <p className="text-xs text-rose-600 dark:text-rose-400">{error}</p>}
     </div>
   );
 });
@@ -78,7 +83,7 @@ export const Select = React.forwardRef<
   return (
     <div className="space-y-1.5">
       {label && (
-        <label htmlFor={inputId} className="block text-sm font-medium text-slate-700">
+        <label htmlFor={inputId} className={LABEL_BASE}>
           {label}
         </label>
       )}
@@ -86,16 +91,15 @@ export const Select = React.forwardRef<
         ref={ref}
         id={inputId}
         className={cn(
-          "block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm",
-          "focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200",
-          error && "border-rose-400",
+          FIELD_BASE,
+          error && "border-rose-400 dark:border-rose-700",
           className
         )}
         {...props}
       >
         {children}
       </select>
-      {error && <p className="text-xs text-rose-600">{error}</p>}
+      {error && <p className="text-xs text-rose-600 dark:text-rose-400">{error}</p>}
     </div>
   );
 });

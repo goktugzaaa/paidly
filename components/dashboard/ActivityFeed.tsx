@@ -11,26 +11,26 @@ const KIND_META: Record<
 > = {
   invoice_created: {
     dot: "bg-brand-500",
-    iconBg: "bg-brand-50",
-    iconStroke: "text-brand-600",
+    iconBg: "bg-brand-50 dark:bg-brand-950/40",
+    iconStroke: "text-brand-600 dark:text-brand-400",
     path: "M12 4v16m8-8H4",
   },
   invoice_sent: {
     dot: "bg-blue-500",
-    iconBg: "bg-blue-50",
-    iconStroke: "text-blue-600",
+    iconBg: "bg-blue-50 dark:bg-blue-950/40",
+    iconStroke: "text-blue-600 dark:text-blue-400",
     path: "M3 12l18-9-9 18-2-7-7-2z",
   },
   invoice_paid: {
     dot: "bg-emerald-500",
-    iconBg: "bg-emerald-50",
-    iconStroke: "text-emerald-600",
+    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
+    iconStroke: "text-emerald-600 dark:text-emerald-400",
     path: "M5 13l4 4L19 7",
   },
   client_created: {
     dot: "bg-amber-500",
-    iconBg: "bg-amber-50",
-    iconStroke: "text-amber-600",
+    iconBg: "bg-amber-50 dark:bg-amber-950/40",
+    iconStroke: "text-amber-600 dark:text-amber-400",
     path: "M16 14a4 4 0 10-8 0M12 14v6m-7 0h14",
   },
 };
@@ -41,12 +41,14 @@ export function ActivityFeed({ items }: { items: ActivityItem[] }) {
 
   if (items.length === 0) {
     return (
-      <div className="px-5 py-8 text-center text-sm text-slate-500">{t.dashboard.activityEmpty}</div>
+      <div className="px-5 py-8 text-center text-sm text-slate-500 dark:text-slate-400">
+        {t.dashboard.activityEmpty}
+      </div>
     );
   }
 
   return (
-    <ul className="divide-y divide-slate-100">
+    <ul className="divide-y divide-slate-100 dark:divide-slate-800">
       {items.map((it) => {
         const meta = KIND_META[it.kind];
         let text = "";
@@ -81,11 +83,11 @@ export function ActivityFeed({ items }: { items: ActivityItem[] }) {
                 </svg>
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-sm text-slate-700 group-hover:text-slate-900">{text}</p>
-                <p className="mt-0.5 text-xs text-slate-400">{timeAgo(it.at, locale)}</p>
+                <p className="text-sm text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-slate-100">{text}</p>
+                <p className="mt-0.5 text-xs text-slate-400 dark:text-slate-500">{timeAgo(it.at, locale)}</p>
               </div>
               {amount && (
-                <span className="shrink-0 text-sm font-semibold text-emerald-600">+{amount}</span>
+                <span className="shrink-0 text-sm font-semibold text-emerald-600 dark:text-emerald-400">+{amount}</span>
               )}
             </Link>
           </li>

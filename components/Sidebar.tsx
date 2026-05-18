@@ -21,10 +21,10 @@ export function Sidebar() {
     },
   ];
   return (
-    <aside className="relative hidden w-60 shrink-0 border-r border-slate-200 bg-white md:block">
+    <aside className="relative hidden w-60 shrink-0 border-r border-slate-200 bg-white md:block dark:border-slate-800 dark:bg-slate-900">
       {/* brand top strip */}
       <span aria-hidden className="absolute inset-x-0 top-0 h-1 bg-brand-gradient" />
-      <div className="flex h-16 items-center border-b border-slate-100 px-5">
+      <div className="flex h-16 items-center border-b border-slate-100 px-5 dark:border-slate-800">
         <Brand size="sm" href="/dashboard" />
       </div>
       <nav className="p-3">
@@ -37,8 +37,8 @@ export function Sidebar() {
               className={cn(
                 "group relative mb-1 flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150",
                 active
-                  ? "bg-brand-50 text-brand-700 shadow-sm"
-                  : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                  ? "bg-brand-50 text-brand-700 shadow-sm dark:bg-brand-950/40 dark:text-brand-300"
+                  : "text-slate-700 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100"
               )}
             >
               {active && (
@@ -49,7 +49,12 @@ export function Sidebar() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                className={cn("h-4 w-4 transition-colors", active ? "text-brand-600" : "text-slate-400 group-hover:text-slate-600")}
+                className={cn(
+                  "h-4 w-4 transition-colors",
+                  active
+                    ? "text-brand-600 dark:text-brand-400"
+                    : "text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300"
+                )}
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
               </svg>
@@ -60,9 +65,9 @@ export function Sidebar() {
       </nav>
 
       {/* footer brand mark */}
-      <div className="absolute inset-x-0 bottom-0 border-t border-slate-100 px-5 py-3">
-        <p className="text-[10px] uppercase tracking-widest text-slate-400">
-          Nib <span className="text-slate-300">·</span> v1.0
+      <div className="absolute inset-x-0 bottom-0 border-t border-slate-100 px-5 py-3 dark:border-slate-800">
+        <p className="text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500">
+          Nib <span className="text-slate-300 dark:text-slate-700">·</span> v1.0
         </p>
       </div>
     </aside>

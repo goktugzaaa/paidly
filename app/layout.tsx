@@ -4,6 +4,7 @@ import "./globals.css";
 import { I18nProvider } from "@/lib/i18n/context";
 import { getLocale } from "@/lib/i18n/server";
 import { FlashToast } from "@/components/Toast";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -60,12 +61,22 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale();
   return (
-    <html lang={locale} className={`${inter.variable} ${serif.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${serif.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Flash-of-wrong-theme prevention: read stored theme before paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('nib-theme');var t=s||'system';var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d){document.documentElement.classList.add('dark');document.documentElement.style.colorScheme='dark';}else{document.documentElement.style.colorScheme='light';}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="font-sans">
-        <I18nProvider locale={locale}>
-          {children}
-          <FlashToast />
-        </I18nProvider>
+        <ThemeProvider>
+          <I18nProvider locale={locale}>
+            {children}
+            <FlashToast />
+          </I18nProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

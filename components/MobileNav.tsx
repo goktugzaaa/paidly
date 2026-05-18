@@ -16,7 +16,7 @@ export function MobileNav() {
     { href: "/settings", label: t.nav.settings },
   ];
   return (
-    <nav className="flex gap-1 border-b border-slate-200 bg-white px-3 py-2 md:hidden">
+    <nav className="flex gap-1 overflow-x-auto border-b border-slate-200 bg-white px-3 py-2 md:hidden dark:border-slate-800 dark:bg-slate-900">
       {items.map((item) => {
         const active = pathname === item.href || pathname.startsWith(item.href + "/");
         return (
@@ -24,8 +24,10 @@ export function MobileNav() {
             key={item.href}
             href={item.href}
             className={cn(
-              "rounded-md px-3 py-1.5 text-sm font-medium",
-              active ? "bg-brand-50 text-brand-700" : "text-slate-600 hover:bg-slate-100"
+              "whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium",
+              active
+                ? "bg-brand-50 text-brand-700 dark:bg-brand-950/40 dark:text-brand-300"
+                : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
             )}
           >
             {item.label}

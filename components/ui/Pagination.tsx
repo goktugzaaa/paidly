@@ -34,8 +34,8 @@ export function Pagination({
   const next = Math.min(totalPages, page + 1);
 
   return (
-    <div className="flex items-center justify-between border-t border-slate-100 px-4 py-3 text-sm">
-      <span className="text-slate-500">
+    <div className="flex items-center justify-between border-t border-slate-100 px-4 py-3 text-sm dark:border-slate-800">
+      <span className="text-slate-500 dark:text-slate-400">
         {t.common.page} {page} {t.common.of} {totalPages} · {total} {t.common.total.toLowerCase()}
       </span>
       <div className="flex gap-1">
@@ -61,7 +61,7 @@ function PageLink({
 }) {
   if (disabled) {
     return (
-      <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-400">
+      <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-400 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-600">
         {children}
       </span>
     );
@@ -70,7 +70,8 @@ function PageLink({
     <Link
       href={href}
       className={cn(
-        "rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+        "rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50",
+        "dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
       )}
     >
       {children}

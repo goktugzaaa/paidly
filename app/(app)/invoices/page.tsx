@@ -56,7 +56,7 @@ export default async function InvoicesPage({
       {/* Period + Summary strip */}
       <div className="space-y-3">
         <PeriodToggle value={period as Period} />
-        <div className="grid grid-cols-2 divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white sm:grid-cols-4 sm:divide-x sm:divide-y-0">
+        <div className="grid grid-cols-2 divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white sm:grid-cols-4 sm:divide-x sm:divide-y-0 dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900">
           <SummaryCell label={t.invoices.summaryCount(summary.count)} value={summary.count.toString()} mono />
           <SummaryCell label={t.invoices.summaryTotal} value={formatCurrency(summary.total, ccy)} />
           <SummaryCell label={t.invoices.summaryPaid} value={formatCurrency(summary.paid, ccy)} accent="emerald" />
@@ -115,13 +115,13 @@ function SummaryCell({
 }) {
   const valueColor =
     accent === "emerald"
-      ? "text-emerald-700"
+      ? "text-emerald-700 dark:text-emerald-400"
       : accent === "amber"
-        ? "text-amber-700"
-        : "text-slate-900";
+        ? "text-amber-700 dark:text-amber-400"
+        : "text-slate-900 dark:text-slate-100";
   return (
     <div className="p-5">
-      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-500">
+      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
         {label}
       </div>
       <div className={`mt-2 text-2xl font-semibold tracking-tight ${valueColor} ${mono ? "font-mono" : ""}`}>
