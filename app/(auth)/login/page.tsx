@@ -7,7 +7,7 @@ export default async function LoginPage() {
   const t = await getDict();
   return (
     <div>
-      <h1 className="text-xl font-semibold text-slate-900">{t.auth.welcomeBack}</h1>
+      <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">{t.auth.welcomeBack}</h1>
       <p className="mt-1 text-sm text-slate-500">{t.auth.signInSub}</p>
       <div className="mt-6">
         <Suspense fallback={null}>

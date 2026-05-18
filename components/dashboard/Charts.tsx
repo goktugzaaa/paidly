@@ -69,7 +69,7 @@ export function StatusList({ data, currency }: { data: StatusPoint[]; currency: 
     <div className="space-y-4">
       <div className="flex items-baseline justify-between">
         <div>
-          <div className="text-3xl font-semibold tracking-tight text-slate-900">{totalCount}</div>
+          <div className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">{totalCount}</div>
           <div className="text-xs uppercase tracking-wide text-slate-500">{t.invoices.title}</div>
         </div>
         <div className="text-right">

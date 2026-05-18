@@ -21,17 +21,17 @@ export function Onboarding({ hasProfile, hasClient, hasInvoice }: OnboardingProp
   const pct = (completed / steps.length) * 100;
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-brand-50 via-white to-white p-5 shadow-sm">
+    <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-brand-50 via-white to-white p-5 shadow-sm dark:border-white/10 dark:from-brand-950/30 dark:via-white/[0.02] dark:to-white/[0.02]">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h3 className="text-base font-semibold text-slate-900">{t.dashboard.onboarding}</h3>
-          <p className="mt-0.5 text-sm text-slate-600">{t.dashboard.onboardingSub}</p>
+          <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">{t.dashboard.onboarding}</h3>
+          <p className="mt-0.5 text-sm text-slate-600 dark:text-slate-400">{t.dashboard.onboardingSub}</p>
         </div>
-        <span className="rounded-full bg-white px-2.5 py-0.5 text-xs font-medium text-slate-700 ring-1 ring-slate-200">
+        <span className="rounded-full bg-white px-2.5 py-0.5 text-xs font-medium text-slate-700 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:text-slate-300 dark:ring-white/10">
           {completed}/{steps.length}
         </span>
       </div>
-      <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100">
+      <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-white/[0.08]">
         <div className="h-full rounded-full bg-brand-600 transition-all" style={{ width: `${pct}%` }} />
       </div>
       <ul className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
@@ -42,14 +42,14 @@ export function Onboarding({ hasProfile, hasClient, hasInvoice }: OnboardingProp
               className={cn(
                 "flex items-center gap-2 rounded-lg border px-3 py-2 text-sm transition-colors",
                 s.done
-                  ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                  : "border-slate-200 bg-white text-slate-700 hover:border-brand-300 hover:text-brand-700"
+                  ? "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/40 dark:bg-emerald-950/30 dark:text-emerald-300"
+                  : "border-slate-200 bg-white text-slate-700 hover:border-brand-300 hover:text-brand-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-300 dark:hover:border-brand-700/50 dark:hover:text-brand-300"
               )}
             >
               <span
                 className={cn(
                   "flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold",
-                  s.done ? "bg-emerald-500 text-white" : "bg-slate-200 text-slate-600"
+                  s.done ? "bg-emerald-500 text-white" : "bg-slate-200 text-slate-600 dark:bg-white/[0.08] dark:text-slate-400"
                 )}
               >
                 {s.done ? "✓" : i + 1}

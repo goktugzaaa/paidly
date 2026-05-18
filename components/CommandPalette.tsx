@@ -205,7 +205,7 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={t.cmdk.placeholder}
-            className="flex-1 border-0 bg-transparent py-4 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-0"
+            className="flex-1 border-0 bg-transparent py-4 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-0"
           />
           <kbd className="rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 font-mono text-[10px] text-slate-500">
             ESC

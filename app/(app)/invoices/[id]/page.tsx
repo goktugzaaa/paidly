@@ -62,13 +62,13 @@ export default async function InvoiceDetailPage({
             <Detail label={t.common.issued}>{formatDate(inv.issue_date)}</Detail>
             <Detail label={t.common.due}>{formatDate(inv.due_date)}</Detail>
             <Detail label={t.common.total}>
-              <span className="text-base font-semibold text-slate-900">
+              <span className="text-base font-semibold text-slate-900 dark:text-slate-100">
                 {formatCurrency(inv.total_amount, ccy)}
               </span>
             </Detail>
             <div>
               <div className="text-xs font-medium uppercase tracking-wide text-slate-500">{t.invoices.billTo}</div>
-              <div className="mt-1 text-slate-800">{inv.client?.name ?? "—"}</div>
+              <div className="mt-1 text-slate-800 dark:text-slate-200">{inv.client?.name ?? "—"}</div>
               {inv.client?.company && <div className="text-slate-600">{inv.client.company}</div>}
               {inv.client?.email && <div className="text-slate-500">{inv.client.email}</div>}
             </div>
@@ -111,7 +111,7 @@ export default async function InvoiceDetailPage({
                 <tbody>
                   {inv.items.map((it) => (
                     <tr key={it.id} className="border-t border-slate-100">
-                      <td className="px-4 py-3 text-slate-800">{it.description}</td>
+                      <td className="px-4 py-3 text-slate-800 dark:text-slate-200">{it.description}</td>
                       <td className="px-4 py-3 text-right">{Number(it.quantity)}</td>
                       <td className="px-4 py-3 text-right">{formatCurrency(it.unit_price, ccy)}</td>
                       <td className="px-4 py-3 text-right font-medium">
@@ -125,7 +125,7 @@ export default async function InvoiceDetailPage({
                     <td colSpan={3} className="px-4 py-2 text-right text-sm text-slate-600">
                       {t.common.subtotal}
                     </td>
-                    <td className="px-4 py-2 text-right text-sm font-medium text-slate-800">
+                    <td className="px-4 py-2 text-right text-sm font-medium text-slate-800 dark:text-slate-200">
                       {formatCurrency(subtotal, ccy)}
                     </td>
                   </tr>
@@ -134,7 +134,7 @@ export default async function InvoiceDetailPage({
                       <td colSpan={3} className="px-4 py-2 text-right text-sm text-slate-600">
                         {t.common.discount}
                       </td>
-                      <td className="px-4 py-2 text-right text-sm font-medium text-slate-800">
+                      <td className="px-4 py-2 text-right text-sm font-medium text-slate-800 dark:text-slate-200">
                         −{formatCurrency(discount, ccy)}
                       </td>
                     </tr>
@@ -144,7 +144,7 @@ export default async function InvoiceDetailPage({
                       <td colSpan={3} className="px-4 py-2 text-right text-sm text-slate-600">
                         {t.common.tax} ({taxRate}%)
                       </td>
-                      <td className="px-4 py-2 text-right text-sm font-medium text-slate-800">
+                      <td className="px-4 py-2 text-right text-sm font-medium text-slate-800 dark:text-slate-200">
                         {formatCurrency(taxAmount, ccy)}
                       </td>
                     </tr>
@@ -153,7 +153,7 @@ export default async function InvoiceDetailPage({
                     <td colSpan={3} className="px-4 py-3 text-right text-sm font-semibold text-slate-700">
                       {t.common.total}
                     </td>
-                    <td className="px-4 py-3 text-right text-base font-semibold text-slate-900">
+                    <td className="px-4 py-3 text-right text-base font-semibold text-slate-900 dark:text-slate-100">
                       {formatCurrency(inv.total_amount, ccy)}
                     </td>
                   </tr>

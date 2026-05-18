@@ -78,7 +78,7 @@ export default async function DashboardPage({
           <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">
             — {t.dashboard.title}
           </p>
-          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-slate-900 sm:text-4xl dark:text-slate-100">
+          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-slate-900 dark:text-slate-100 sm:text-4xl dark:text-slate-100">
             {t.dashboard.welcomePrefix}{" "}
             <span className="font-serif italic text-slate-500 dark:text-slate-400">{displayName}</span>
             {t.dashboard.welcomeSuffix}
@@ -178,7 +178,7 @@ export default async function DashboardPage({
               <CardTitle>{t.topClients.title}</CardTitle>
               <p className="mt-0.5 text-xs text-slate-500">{t.topClients.sub}</p>
             </div>
-            <Link href="/reports" className="font-mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-slate-900">
+            <Link href="/reports" className="font-mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100">
               {t.dashboard.viewAll}
             </Link>
           </CardHeader>
@@ -190,7 +190,7 @@ export default async function DashboardPage({
         <Card className="lg:col-span-2">
           <CardHeader className="flex items-center justify-between">
             <CardTitle>{t.dashboard.recent}</CardTitle>
-            <Link href="/invoices" className="font-mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-slate-900">
+            <Link href="/invoices" className="font-mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100">
               {t.dashboard.viewAll}
             </Link>
           </CardHeader>
@@ -221,7 +221,7 @@ export default async function DashboardPage({
                 <tbody>
                   {stats.recent.map((inv) => (
                     <TR key={inv.id}>
-                      <TD className="font-medium text-slate-900">
+                      <TD className="font-medium text-slate-900 dark:text-slate-100">
                         <Link href={`/invoices/${inv.id}`} className="hover:text-brand-700">
                           {inv.invoice_number}
                         </Link>
@@ -263,7 +263,7 @@ function StatLine({
         {label}
       </p>
       <div className="mt-1 flex items-baseline gap-2">
-        <span className="text-xl font-semibold tabular-nums text-slate-900 dark:text-slate-100">
+        <span className="text-xl font-semibold tabular-nums text-slate-900 dark:text-slate-100 dark:text-slate-100">
           {value}
         </span>
         {delta !== undefined && delta !== null && (

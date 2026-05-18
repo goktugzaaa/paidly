@@ -66,7 +66,7 @@ function FlashInner() {
             <path strokeLinecap="round" strokeLinejoin="round" d={iconPath} />
           </svg>
         </span>
-        <p className="text-sm font-medium text-slate-900">{message}</p>
+        <p className="text-sm font-medium text-slate-900 dark:text-slate-100">{message}</p>
         <button
           type="button"
           onClick={() => setVisible(false)}

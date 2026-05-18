@@ -58,7 +58,7 @@ export function InvoiceTimeline({ createdAt, sentAt, paidAt, status }: TimelineP
             </svg>
           </span>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium text-slate-900">{e.label}</p>
+            <p className="text-sm font-medium text-slate-900 dark:text-slate-100">{e.label}</p>
             <p className="mt-0.5 text-xs text-slate-500">{timeAgo(e.at, locale)}</p>
           </div>
         </li>

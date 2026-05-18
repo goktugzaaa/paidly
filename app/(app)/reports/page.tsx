@@ -67,7 +67,7 @@ export default async function ReportsPage() {
           </CardHeader>
           <CardBody className="space-y-4">
             <div>
-              <div className="text-3xl font-semibold tracking-tight text-slate-900">
+              <div className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
                 {formatCurrency(totalUnpaid, ccy)}
               </div>
               <p className="text-xs text-slate-500">Total outstanding</p>

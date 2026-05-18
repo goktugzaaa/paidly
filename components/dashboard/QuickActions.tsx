@@ -42,7 +42,7 @@ export function QuickActions() {
             </svg>
           </span>
           <span className="min-w-0 flex-1">
-            <span className="block text-sm font-semibold text-slate-900 group-hover:text-brand-700">
+            <span className="block text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-brand-700">
               {it.title}
             </span>
             <span className="mt-0.5 block text-xs text-slate-500">{it.sub}</span>

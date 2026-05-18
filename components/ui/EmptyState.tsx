@@ -61,7 +61,7 @@ export function EmptyState({
       >
         {art.svg}
       </div>
-      <h3 className="relative text-base font-semibold text-slate-900">{title}</h3>
+      <h3 className="relative text-base font-semibold text-slate-900 dark:text-slate-100">{title}</h3>
       {description && (
         <p className="relative mt-1 max-w-md text-sm text-slate-500">{description}</p>
       )}

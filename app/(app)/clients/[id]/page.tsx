@@ -118,7 +118,7 @@ export default async function ClientDetailPage({
                 <tbody>
                   {invoices.map((inv) => (
                     <TR key={inv.id}>
-                      <TD className="font-medium text-slate-900">
+                      <TD className="font-medium text-slate-900 dark:text-slate-100">
                         <Link href={`/invoices/${inv.id}`} className="hover:text-brand-700">
                           {inv.invoice_number}
                         </Link>

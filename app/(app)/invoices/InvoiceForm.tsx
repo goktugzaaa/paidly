@@ -135,7 +135,7 @@ export function InvoiceForm({
 
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-slate-900">{t.invoices.lineItems}</h3>
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">{t.invoices.lineItems}</h3>
           <Button type="button" variant="outline" size="sm" onClick={addItem}>
             {t.common.addItem}
           </Button>
@@ -188,7 +188,7 @@ export function InvoiceForm({
                         className="w-full rounded-md border border-slate-300 px-2 py-1.5 text-right text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
                       />
                     </td>
-                    <td className="px-3 py-2 text-right font-medium text-slate-800">
+                    <td className="px-3 py-2 text-right font-medium text-slate-800 dark:text-slate-200">
                       {formatCurrency(lineTotal, currency)}
                     </td>
                     <td className="px-2 py-2 text-right">
@@ -287,8 +287,8 @@ export function InvoiceForm({
 function Row({ label, value, bold }: { label: string; value: string; bold?: boolean }) {
   return (
     <div className={`flex items-center justify-between gap-3 text-sm ${bold ? "text-base" : ""}`}>
-      <span className={bold ? "font-semibold text-slate-900" : "text-slate-600"}>{label}</span>
-      <span className={bold ? "font-semibold text-slate-900" : "font-medium text-slate-800"}>{value}</span>
+      <span className={bold ? "font-semibold text-slate-900 dark:text-slate-100" : "text-slate-600"}>{label}</span>
+      <span className={bold ? "font-semibold text-slate-900 dark:text-slate-100" : "font-medium text-slate-800 dark:text-slate-200"}>{value}</span>
     </div>
   );
 }

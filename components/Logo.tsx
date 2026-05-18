@@ -52,7 +52,7 @@ export function Brand({
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <LogoMark size={size} />
       {showText && (
-        <span className={cn("font-serif italic tracking-tight text-slate-900", textSize[size])}>
+        <span className={cn("font-serif italic tracking-tight text-slate-900 dark:text-slate-100", textSize[size])}>
           Nib
         </span>
       )}

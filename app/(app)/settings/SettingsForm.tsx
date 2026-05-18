@@ -71,8 +71,8 @@ export function SettingsForm({ initial }: { initial: Profile | null }) {
       <Textarea label={t.fields.address} name="address" rows={3} defaultValue={initial?.address ?? ""} />
       <CountryWarning code={country} />
 
-      <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
-        <h3 className="mb-3 text-sm font-semibold text-slate-900">{t.fields.bank}</h3>
+      <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+        <h3 className="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">{t.fields.bank}</h3>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <Input label={t.fields.bankName} name="bank_name" defaultValue={initial?.bank_name ?? ""} />
           <Input label={t.fields.accountNumber} name="bank_account" defaultValue={initial?.bank_account ?? ""} />

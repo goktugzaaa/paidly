@@ -6,7 +6,7 @@ export default async function ForgotPasswordPage() {
   const t = await getDict();
   return (
     <div>
-      <h1 className="text-xl font-semibold text-slate-900">{t.auth.forgotTitle}</h1>
+      <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">{t.auth.forgotTitle}</h1>
       <p className="mt-1 text-sm text-slate-500">{t.auth.forgotSub}</p>
       <div className="mt-6">
         <ForgotForm />
