@@ -14,6 +14,7 @@ export function Sidebar() {
     { href: "/clients", label: t.nav.clients, icon: "M16 14a4 4 0 10-8 0M12 14v6m-7 0h14" },
     { href: "/invoices", label: t.nav.invoices, icon: "M7 4h10l3 4v12H4V8l3-4zM4 8h16M9 14h6" },
     { href: "/reports", label: t.nav.reports, icon: "M3 3v18h18M7 16V9m4 7V5m4 11v-3m4 3V11" },
+    { href: "/attention", label: t.nav.attention, icon: "M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z" },
     {
       href: "/settings",
       label: t.nav.settings,

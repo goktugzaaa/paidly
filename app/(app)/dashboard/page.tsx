@@ -37,14 +37,17 @@ export default async function DashboardPage({
     : "30d") as DashboardRange;
 
   const { user } = await requireUser();
-  const [stats, profile, t, topClients, actionItems, delta] = await Promise.all([
+  const [stats, profile, t, topClients, allActionItems, delta] = await Promise.all([
     getDashboardStats(user.id, range),
     getProfile(user.id),
     getDict(),
     getTopClients(user.id, 5),
-    getActionItems(user.id),
+    getActionItems(user.id, 200),
     getRevenueDelta(user.id, RANGE_DAYS[range]),
   ]);
+  const DASH_CAP = 10;
+  const actionItems = allActionItems.slice(0, DASH_CAP);
+  const actionRemaining = allActionItems.length - actionItems.length;
   const ccy = profile?.default_currency ?? "USD";
   const displayName =
     profile?.business_name ||
@@ -127,14 +130,32 @@ export default async function DashboardPage({
       {/* Needs attention + Activity (priority row) */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
-          <CardHeader>
+          <CardHeader className="flex items-center justify-between">
             <div>
               <CardTitle>{t.actions.title}</CardTitle>
-              <p className="mt-0.5 text-xs text-slate-500">{t.actions.sub}</p>
+              <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">{t.actions.sub}</p>
             </div>
+            {actionRemaining > 0 && (
+              <Link
+                href="/attention"
+                className="font-mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+              >
+                {t.actions.moreCount(actionRemaining)} →
+              </Link>
+            )}
           </CardHeader>
           <CardBody className="p-0">
             <ActionItems items={actionItems} />
+            {allActionItems.length > 0 && (
+              <div className="border-t border-slate-100 px-5 py-3 text-center dark:border-white/10">
+                <Link
+                  href="/attention"
+                  className="font-mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+                >
+                  {t.actions.seeAll(allActionItems.length)}
+                </Link>
+              </div>
+            )}
           </CardBody>
         </Card>
         <Card>

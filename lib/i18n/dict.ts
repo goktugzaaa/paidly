@@ -13,6 +13,7 @@ const en = {
     clients: "Clients",
     invoices: "Invoices",
     reports: "Reports",
+    attention: "Attention",
     settings: "Settings",
     signOut: "Sign out",
     account: "Account",
@@ -517,6 +518,8 @@ const en = {
     open: "Open",
     delta: (pct: number) => `${pct >= 0 ? "+" : ""}${pct.toFixed(0)}% vs prior`,
     noChange: "no change vs prior",
+    seeAll: (n: number) => `See all (${n}) →`,
+    moreCount: (n: number) => `+${n} more`,
   },
   timeline: {
     title: "Timeline",
@@ -552,6 +555,7 @@ const tr: typeof en = {
     clients: "Müşteriler",
     invoices: "Faturalar",
     reports: "Raporlar",
+    attention: "Dikkat",
     settings: "Ayarlar",
     signOut: "Çıkış",
     account: "Hesap",
@@ -1055,6 +1059,8 @@ const tr: typeof en = {
     open: "Aç",
     delta: (pct: number) => `${pct >= 0 ? "+" : ""}${pct.toFixed(0)}% önceki döneme göre`,
     noChange: "değişim yok",
+    seeAll: (n: number) => `Tümünü gör (${n}) →`,
+    moreCount: (n: number) => `+${n} daha`,
   },
   timeline: {
     title: "Zaman tüneli",

@@ -14,7 +14,7 @@ export interface ActionItem {
 
 const DAY = 86_400_000;
 
-export async function getActionItems(userId: string): Promise<ActionItem[]> {
+export async function getActionItems(userId: string, limit = 100): Promise<ActionItem[]> {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("invoices")
@@ -64,7 +64,12 @@ export async function getActionItems(userId: string): Promise<ActionItem[]> {
   };
   items.sort((a, b) => order[a.kind] - order[b.kind] || b.days - a.days);
 
-  return items.slice(0, 6);
+  return items.slice(0, limit);
+}
+
+export async function getActionItemsCount(userId: string): Promise<number> {
+  const items = await getActionItems(userId);
+  return items.length;
 }
 
 export async function getRevenueDelta(userId: string, rangeDays: number): Promise<number | null> {

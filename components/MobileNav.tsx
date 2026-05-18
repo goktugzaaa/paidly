@@ -13,6 +13,7 @@ export function MobileNav() {
     { href: "/clients", label: t.nav.clients },
     { href: "/invoices", label: t.nav.invoices },
     { href: "/reports", label: t.nav.reports },
+    { href: "/attention", label: t.nav.attention },
     { href: "/settings", label: t.nav.settings },
   ];
   return (
